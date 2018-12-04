@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Art Wars</title>
+        <script type="text/javascript" src="drawing.js"></script>
+        <script type="text/javascript" src="Photon_SDK.js"></script>
+        <script type="text/javascript" src="loadBalancing.js"></script>
+        <script type="text/javascript" src="photonSettings.js"></script>
+        <script type="text/javascript" src="eventControl.js"></script>
+        <script type="text/javascript" src="easeljs.js"></script>
+        <script type="text/javascript" src="soundjs.js"></script>
+        <script type="text/javascript" src="chat.js"></script>
+        <script type="text/javascript" src="other.js"></script>
+        <script type="text/javascript" src="game.js"></script>
+        <!--<script type="text/javascript" src="setup.js"></script>-->
+        <script type="text/javascript" src="practice.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div id="nav-bar">
+            <input type="button" id="back" class="btn" value="Back"/>
+            <img id="logo" src="logo2.png" height="60%"/>
+        </div>
+        <div id="choose-name">
+            <p class="note">Pick a name and avatar to play online</p>
+            <div id="actor-info">
+                <!--<div id="edit"></div>-->
+                <div id="avatar-selected" class='avatar' onclick="changeAvatarBox()"></div>
+                <input type="text" id="name" placeholder="Name" maxlength="12"/>
+            </div>
+            <div id="avatar-select">
+
+            </div>
+            <br/>
+            <input type="button" id="play" class="btn" value="Play online"/>
+            <br/>
+            <p class="note note2">or</p>
+            <input type="button" id="practice" class="btn" value="Practice"/>
+        </div>
+        <div id="main">
+            <div id="left">
+                <div class="top-bar">
+                    <p class="title-text">Players Online</p>
+                    <p class="title-text" id="player-count">0/10</p>
+                </div>
+                <div id="actors">
+                </div>
+            </div>
+            <div id="center">
+                <div id="drawing-tools">
+                    <div id="color-box" class="box">
+                        <div class="tool-title"><p>Color</p></div>
+                        <div id="color-circle">
+                        </div>
+                        <div id="color-circles">
+                            <div class="color" style="background: black" onclick="changeColor('black');"></div>
+                            <div class="color" style="background: white;border: solid 1px grey;" onclick="changeColor('white');"></div>
+                            <div class="color" style="background: grey" onclick="changeColor('grey');"></div>
+                            <div class="color" style="background: lightgrey" onclick="changeColor('lightgrey');"></div>
+                            <div class="color" style="background: #740b07;" onclick="changeColor('#740b07');"></div>
+                            <div class="color" style="background: red" onclick="changeColor('red');"></div>
+                            <div class="color" style="background: #c23800" onclick="changeColor('#c23800');"></div>
+                            <div class="color" style="background: #ff7100" onclick="changeColor('#ff7100');"></div>
+                            <div class="color" style="background: #e8a200" onclick="changeColor('#e8a200');"></div>
+                            <div class="color" style="background: yellow" onclick="changeColor('yellow');"></div>
+                            <div class="color" style="background: green" onclick="changeColor('green');"></div>
+                            <div class="color" style="background: #00cc00" onclick="changeColor('#00cc00');"></div>
+                            <div class="color" style="background: #00569e" onclick="changeColor('#00569e');"></div>
+                            <div class="color" style="background: #00b2ff" onclick="changeColor('#00b2ff');"></div>
+                            <div class="color" style="background: #0e0865" onclick="changeColor('#0e0865');"></div>
+                            <div class="color" style="background: #231fd3" onclick="changeColor('#231fd3');"></div>
+                            <div class="color" style="background: #550069" onclick="changeColor('#550069');"></div>
+                            <div class="color" style="background: purple" onclick="changeColor('purple');"></div>
+                            <div class="color" style="background: #a75574" onclick="changeColor('#a75574');"></div>
+                            <div class="color" style="background: #d37caa" onclick="changeColor('#d37caa');"></div>
+                            <div class="color" style="background: #63300d" onclick="changeColor('#63300d');"></div>
+                            <div class="color" style="background: #a0522d" onclick="changeColor('#a0522d');"></div>
+
+                        </div>
+                    </div>
+                    <div id="size-box" class="box">
+                        <div class="tool-title"><p>Size</p></div>
+                        <div class="size" style="width: 5px;height: 5px;" onclick="changeWidth(5)"></div>
+                        <div class="size" style="width: 15px;height: 15px;" onclick="changeWidth(15)"></div>
+                        <div class="size" style="width: 30px;height: 30px;" onclick="changeWidth(30)"></div>
+                        <div class="size" style="width: 45px;height: 45px;" onclick="changeWidth(45)"></div>
+                    </div>
+                    <div id="tool-box" class="box">
+                        <div class="tool-title"><p>Tools</p></div>
+                        <div class="tool" onclick="fillCanvas()"></div>
+                        <div class="tool" style="background:url(trash.png);background-size:25px;background-repeat:no-repeat;" onclick="clearCanvas()"></div>
+                        <div class="tool" style="background: url(erase.png);background-size:27px;background-repeat:no-repeat;" onclick="changeColor('white');"></div>
+                        <div class="tool" style="background: url(download.png);background-size: 27px;background-repeat:no-repeat;" onclick="saveImage();"></div>
+                    </div>
+                </div>
+                <div id="drawing-box">
+                    <div id="top-center">
+                        <div class="top-center-boxes">
+                            <p class="title-text" id="drawing-note"></p>
+                        </div>
+                        <div class="top-center-boxes">
+                            <p class="title-text" id="drawing-hint-note"></p>
+                            <p class="title-text" id="drawing-hint"></p>
+                        </div>
+                        <div class="top-center-boxes">
+                            <p class="title-text" id="clock"></p>
+                        </div>
+                    </div>
+                    <canvas id="draw" width="1265px" height="759px"></canvas>
+                    <!--<canvas id="draw"></canvas>-->
+                </div>
+            </div>
+            <div id="right">
+                <div class="top-bar">
+                    <p class="title-text">Chat / Guess</p>
+                </div>
+                <div id="chat">
+
+                </div>
+                <div id="chat-inputs">
+                    <input type="text" id="chat-input" placeholder="" maxlength="185"/>
+                    <input type="button" id="send" value="Send" onclick="sendChat();"/>
+                </div>
+            </div>
+        </div>
+        <div id="bottom-fixed">
+            <p><a href="https://www.linkedin.com/in/alex-palumbo-b3a2b7160/">Alex Palumbo</a></p>
+        </div>
+    </body>
+</html>

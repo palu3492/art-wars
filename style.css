@@ -1,0 +1,439 @@
+html{
+    margin: 0;
+    height: 100%;
+}
+body{
+    margin: 0;
+    height: 100%;
+    min-width:700px;
+}
+p{
+    font-family: Roboto, Arial, sans-serif;
+}
+#nav-bar{
+    height: 65px;
+    width: 100%;
+    text-align: center;
+    background: linear-gradient(to top, #46abe0 0%, #1976cd 100%);
+    box-shadow: 0px 4px 8px -3px rgba(0, 0, 0, 0.22);
+    position: relative;
+    z-index: 10;
+}
+#back{
+    float: left;
+    background: white;
+    margin-top: 18px;
+    font-size: 14px;
+    display: none;
+}
+#logo{
+    margin: 10px;
+}
+#choose-name{
+    width: 450px;
+    border: solid 1px #dad8de;
+    border-radius: 10px;
+    text-align: center;
+    margin: auto;
+    margin-top: 150px;
+}
+.note{
+    color: grey;
+}
+.note2{
+    margin: 5px;
+}
+#actor-info{
+    width: 270px;
+    margin: auto;
+    margin-top: 25px;
+}
+#edit{
+    background-image: url(change.png);
+    width: 37px;
+    height: 37px;
+    position:absolute;
+    z-index:1;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.5;
+}
+#avatar-select{
+    width: 270px;
+    margin: auto;
+    margin-top: 10px;
+    display: none;
+    overflow: auto;
+    border: solid 1px #dad8de;
+    padding: 10px;
+    border-radius: 10px;
+}
+.avatar{
+    background-image: url(avatars/final/narwhal.png);
+    width: 37px;
+    height: 37px;
+    float: left;
+    background-size: 37px;
+    cursor: pointer;
+}
+.avatar-all{
+    margin-top: 9px;
+    margin-right: 9px;
+}
+#name{
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-left:20px;
+}
+.btn{
+    border: none;
+    padding: 7px 10px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    margin: 10px;
+}
+#main{
+    display: none;
+    height: calc(100% - 65px);
+    /*display: grid;*/
+    grid-template-columns: 13% auto 340px;
+    grid-template-rows: calc(100% - 18px) calc(100% - 18px) calc(100% - 18px);
+    grid-template-areas: "left center right";
+    background: #faf9fa;
+    -webkit-animation: expand 2s;
+}
+@-webkit-keyframes expand{
+    0%{opacity:0}
+    100%{opacity:1}
+}
+p{
+    font-size: 15px;
+}
+
+#left{
+    grid-area: left;
+    background: #f5f5f5;
+}
+.title-text{
+    font-size: 15px;
+    margin: 0px;
+    color: black;
+    padding: 16px;
+    float: left;
+}
+#player-count{
+    float: right;
+}
+#actors{
+    width:100%;
+    float: left;
+    height: calc(100% - 60px);
+    overflow: auto;
+}
+.actor{
+    width: 100%;
+    padding-top: 15px;
+    float: left;
+}
+.actor-text{
+    float: left;
+    margin-left: 15px;
+}
+.actor p {
+    margin: 1px;
+    color: #b2b0b9;
+    width: 85px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.avatar-ingame{
+    margin-left: 15px;
+    cursor: default;
+}
+.points{
+    margin-bottom: 0px!important;
+}
+#center{
+    grid-area: center;
+    background: white;
+    overflow-y: scroll;
+}
+#center::-webkit-scrollbar-track {
+    background: white;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f5f5f5;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+#drawing-tools{
+    display: none;
+    width: 60px;
+    margin: 20px;
+    margin-bottom: 0;
+    float: left;
+}
+.tool-title{
+    width: 100%;
+    background: #f5f5f5;
+    border-radius: 10px;
+    text-align: center;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom: solid 1px #dad8de;
+    /*float: left;*/
+}
+.tool-title p{
+    padding: 4px;
+    margin: 0px;
+    color: grey;
+}
+.box{
+    width:100%;
+    float: left;
+    margin-bottom: 20px;
+    border: solid 1px #dad8de;
+    border-radius: 10px;
+}
+@media only screen and (max-height: 800px) {
+    .box {
+        width:45%;
+        margin-right:4px;
+    }
+    #drawing-tools {
+        width: 135px;
+    }
+    .drawing-box-yourturn{
+        width: calc(100% - 185px)!important;
+    }
+}
+@media only screen and (min-height: 800px) {
+    .drawing-box-yourturn{
+        width: calc(100% - 125px)!important;
+    }
+}
+/*@media only screen and (min-width: 2000px) {*/
+    /*#drawing-box{*/
+        /*width: 1335px!important;*/
+    /*}*/
+/*}*/
+/*@media only screen and (min-width: 1920px) {*/
+    /*#drawing-box{*/
+        /*width: 1265px!important;*/
+    /*}*/
+/*}*/
+.drawing-box-yourturn{
+    float: left;
+    /*max-width: 1400px!important;*/
+}
+#color-circle {
+    margin: auto;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background: red;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: solid 1px grey;
+}
+#color-circles{
+    width: 55px;
+    margin:auto;
+}
+.color{
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    background: red;
+    cursor: pointer;
+    float: left;
+    margin: 2px;
+}
+#size-box{
+    text-align: center;
+}
+.size{
+    border-radius: 50%;
+    width: 5px;
+    height: 5px;
+    background: black;
+    border: 1px solid black;
+    cursor: pointer;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.tool{
+    width: 30px;
+    height: 30px;
+    background: url(fill.png);
+    background-size: 30px;
+    background-repeat: no-repeat;
+    margin: auto;
+    margin-top: 10px;
+    cursor: pointer;
+}
+#tool-box{
+    text-align: center;
+    margin-bottom: 0;
+}
+#drawing-box{
+    background: #f5f5f5;
+    border: solid 1px #dad8de;
+    border-radius: 10px;
+    width: calc(100% - 60px);
+    margin:auto;
+    margin-top: 20px;
+}
+#drawing-note{
+    font-size: 16px;
+    padding: 20px;
+}
+#drawing-hint, #drawing-hint-note{
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 5px;
+    padding: 0px;
+}
+#drawing-hint-note{
+    padding-top:10px;
+}
+#clock{
+    text-align: right;
+    width: calc(100% - 20px);
+    padding: 0px;
+    padding-top: 20px;
+    font-size: 16px;
+}
+#top-center{
+    width: 100%;
+    height: 60px;
+}
+.top-center-boxes{
+    height: 100%;
+    width: 33.33%;
+    float: left;
+}
+#draw{
+    background: white;
+    border-top: solid 1px #dad8de;
+    border-radius: 10px;
+
+    --widthA: 100%;
+    width: var(--widthA);
+    height: calc(var(--widthA) * 0.60);
+
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+.practice{
+    /*max-width: 1265px!important;*/
+}
+#right{
+    grid-area: right;
+    background: #f5f5f5;
+}
+@media only screen and (max-width: 1480px) {
+    #player-count {
+        display: none;
+    }
+}
+@media only screen and (max-width: 1200px) {
+    #left {
+        display: none;
+    }
+    #main {
+        grid-template-columns: 0px auto 25%;
+    }
+}
+@media only screen and (max-width: 920px) {
+    #right {
+        display: none;
+    }
+    #main {
+        grid-template-columns: 0px auto 0px;
+    }
+}
+
+.top-bar{
+    float: left;
+    width: 100%;
+    border-bottom: solid 1px #dad8de;
+}
+
+#chat{
+    height: calc(100% - 120px);
+    overflow-y: auto;
+    width: 100%;
+    border-bottom: solid 1px #dad8de;
+    margin-bottom: 20px;
+}
+
+#chat-inputs{
+    width: 95%;
+    margin: auto;
+}
+#chat-input {
+    width: calc(100% - 70px);
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+#chat-input:focus{
+    outline: 0;
+}
+#send{
+    border: none;
+    padding: 7px 10px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#bottom-fixed{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #41a5de;
+    text-align: center;
+}
+#bottom-fixed p{
+    margin: 5px;
+    color: white;
+}
+#bottom-fixed a{
+    text-decoration: none;
+}
+#bottom-fixed a:visited{
+    color: white;
+}
