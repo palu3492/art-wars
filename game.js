@@ -6,7 +6,11 @@ var wordHint = [];
 var practice = false;
 
 function actorJoined(actor){
-    soundInit();
+    if (actor.actorNr === photon.myActor().actorNr) {
+        soundInit();
+    } else{
+        playSound('sounds/zap1.mp3');
+    }
     changeActorList();
     notifyChat(actor.name + " joined");
     // if more than 1 players are in room and the game is not active
@@ -62,13 +66,16 @@ function soundInit(){
     if (!createjs.Sound.initializeDefaultPlugins()) {return;}
     var audioPath = "sounds/";
     var sounds = [
-        {id:"Music", src:"fizz.mp3"}
+        {id:"join", src:"zap1.mp3"}
     ];
     createjs.Sound.alternateExtensions = ["mp3"];
+    createjs.Sound.addEventListener("fileload", handleLoad);
     createjs.Sound.registerSounds(sounds, audioPath);
 }
+function handleLoad(event) {
+    createjs.Sound.play(event.src);
+}
 function playSound(src) {
-    // sounds/fizz.mp3"
     createjs.Sound.play(src);
 }
 

@@ -216,7 +216,7 @@ p{
     border: solid 1px #dad8de;
     border-radius: 10px;
 }
-@media only screen and (max-height: 800px) {
+@media only screen and (max-height: 850px) {
     .box {
         width:45%;
         margin-right:4px;
@@ -228,7 +228,7 @@ p{
         width: calc(100% - 185px)!important;
     }
 }
-@media only screen and (min-height: 800px) {
+@media only screen and (min-height: 850px) {
     .drawing-box-yourturn{
         width: calc(100% - 125px)!important;
     }
