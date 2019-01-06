@@ -1,2 +1,4 @@
 # Art-Wars
-Online Multiplayer Pictionary Game (ArtWars.tk)
+Online Multiplayer Pictionary Game
+
+PLAY AT WWW.ARTWARS.TK
