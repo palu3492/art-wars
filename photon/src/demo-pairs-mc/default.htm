@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>TypeScript HTML App</title>
+    <link rel="stylesheet" media="all" href="css/eg.photon.demo.css" />
+    <script type="text/javascript" src="3rdparty/easeljs.min.js"></script>
+    <script type="text/javascript" src="Photon/3rdparty/swfobject.js"></script>
+    <script type="text/javascript" src="Photon/3rdparty/web_socket.js"></script>
+    <!--lib--><script type="text/javascript" src="Photon/Photon-Javascript_SDK.js"></script>
+    <!--info (optional)--><script type="text/javascript" src="cloud-app-info.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="master-client.js"></script>
+    <script type="text/javascript">
+        WEB_SOCKET_SWF_LOCATION = "Photon/3rdparty/WebSocketMain.swf";
+        // Set this to dump debug message from Flash to console.log:
+        WEB_SOCKET_DEBUG = false;
+    </script>
+</head>
+<body>
+    <h1><b id="masterclientmark"></b>Pairs Demo (Master Client)</h1>
+    <div id="fb-root"></div>
+    <script>
+        if (DemoFbAppId) {
+            window.fbAsyncInit = function () {
+                window.onFbLoginClick = function () {
+                    var onLogin = function (response) {
+                        if (response.authResponse) {
+                            FB.api('/me', function(meResp) {
+                                var id = "fb:" + response.authResponse.userID;
+                                loadBalancingClient.myActor().setInfo(id, meResp.name);
+                                this.connectToRegionMaster("EU");
+                        });
+                        } else {
+                            console.log('User cancelled login or did not fully authorize.');
+                        }
+                    }
+                    FB.getLoginStatus(function (response) {
+                        if (response.status == "connected") {
+                            onLogin(response);
+                        }
+                        else if (response.status == "not_authorized") {
+                            onLogin(response);
+                        }
+                        else {
+                            FB.login(function (response) {
+                                onLogin(response)
+                            })
+                        }
+                    });
+                };
+            };
+
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "https://connect.facebook.net/en_US/all.js#xfbml=1&appId=" + DemoFbAppId;
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+            
+        }
+    </script>
+    <h1 id="info"></h1>
+    <input type="checkbox" id="autoplay" value="false"/>Autoplay
+    <canvas id="canvas" width="512" height="512" style="float: left; padding: 0 20px 0 0"></canvas>
+    <div>
+        <div id="statetxt">
+            undef
+        </div>
+        <form>
+            Name:<input type="text" id="playername" />
+            <input type="submit" value="Connect" id="connectbtn" autofocus="autofocus" />
+        </form>        
+        <div>
+            <button id="fblogin" onclick="onFbLoginClick()">FB Login</button>
+            <button id="disconnectbtn">Disconnect</button>
+        </div>
+        <button id="newgame">New Game</button>
+        <button id="newtrivial">New Trivial</button>        
+        Next Player:
+        <div id="nextplayer"></div>
+        <br/>PLayers Online:
+        <ul id="playeronlinelist">
+            <li>none</li>
+        </ul>
+        <br/>Players in game (hover for details):
+        <ul id="players">
+            <li>none</li>
+        </ul>
+        <br/>Game State:
+        <div id="gamestate"></div>
+        <div id="log"></div>
+    </div>
+    <script>
+        document.getElementById("playername").focus()
+    </script>
+
+</body>
+</html>

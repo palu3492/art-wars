@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>TypeScript HTML App</title>
+    <link rel="stylesheet" media="all" href="css/eg.photon.demo.css" />
+    <script type="text/javascript" src="3rdparty/easeljs.min.js"></script>
+    <script type="text/javascript" src="Photon/3rdparty/swfobject.js"></script>
+    <script type="text/javascript" src="Photon/3rdparty/web_socket.js"></script>
+    <!--lib--><script type="text/javascript" src="Photon/Photon-Javascript_SDK.js"></script>
+    <!--info (optional)--><script type="text/javascript" src="cloud-app-info.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript">
+        WEB_SOCKET_SWF_LOCATION = "Photon/3rdparty/WebSocketMain.swf";
+        // Set this to dump debug message from Flash to console.log:
+        WEB_SOCKET_DEBUG = false;
+    </script>
+</head>
+<body>
+    <h1>Particle Demo</h1>
+    <div id="fb-root"></div>
+    <script>
+        if (ParticleDemoFbAppId) {
+            window.fbAsyncInit = function () {
+                FB.Event.subscribe('auth.authResponseChange', function (response) {
+                    if (response.status === "connected") {
+                        loadBalancingClient.setCustomAuthentication("token=" + response.authResponse.accessToken);
+                        loadBalancingClient.connect({ keepMasterConnection: true });
+                    }
+                });
+            };
+
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "https://connect.facebook.net/en_US/all.js#xfbml=1&appId=" + ParticleDemoFbAppId;
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        }
+    </script>
+    <div>
+        <div class="fb-login-button" data-show-faces="true" data-width="400" data-max-rows="1" data-registration-url="" ></div>
+    </div>
+    <canvas id="canvas" width="512" height="512" style="float: left; padding: 0 20px 0 0"></canvas>
+    <div >
+        <div id="statetxt">
+            undef
+        </div>
+        <button id="newgamebtn">New Game</button>
+        <button id="leavebtn">Leave</button>
+        <select id="gamelist">
+        </select>
+        <button id="joinbtn">Join</button>
+        <input type="checkbox" id="rejoin"/>Rejoin
+        <div>
+            <input type="checkbox" id="usegroups" checked="checked"/>Use Groups
+            <input type="checkbox" id="automove" checked="checked"/>Automove
+            <button id="gridsize">Grid Size</button>
+            <button id="randomcolor">Random Color</button>
+        </div>
+        <br/>PLayers:
+        <ul id="playerlist">
+            <li>none</li>
+        </ul>
+        <div id="log"></div>
+
+    </div>
+
+    <form onsubmit="loadBalancingClient.findFriends(document.getElementById('friends').value.split(',')); return false;">
+    Friends (comma-separated names): <input id="friends" type="text" "/>
+            <button>Find</button>
+    </form>
+    <form onsubmit="loadBalancingClient.requestLobbyStatsDemo(); return false;">
+    Lobbies (optional: name1:type1,name2:type2...): <input id="lobbiesToRequest" type="text" "/>
+            <button>LobbyStats</button>
+    </form>
+</body>
+</html>

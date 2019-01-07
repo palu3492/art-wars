@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>TypeScript HTML App</title>
+    <link rel="stylesheet" media="all" href="css/eg.photon.demo.css" />
+    <script type="text/javascript" src="Photon/3rdparty/swfobject.js"></script>
+    <script type="text/javascript" src="Photon/3rdparty/web_socket.js"></script>
+    <!--lib--><script type="text/javascript" src="Photon/Photon-Javascript_SDK.js"></script>
+    <!--info (optional)--><script type="text/javascript" src="cloud-app-info.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript">
+        WEB_SOCKET_SWF_LOCATION = "Photon/3rdparty/WebSocketMain.swf";
+        // Set this to dump debug message from Flash to console.log:
+        WEB_SOCKET_DEBUG = false;
+    </script>
+</head>
+<body>
+    <h1>LoadBalancing Chat Demo</h1>
+    <div id="fb-root"></div>
+    <script>
+        if (DemoFbAppId) {
+            window.fbAsyncInit = function () {
+                FB.Event.subscribe('auth.authResponseChange', function (response) {
+                    if (response.status === "connected") {
+                        demo.setCustomAuthentication("token=" + response.authResponse.accessToken);
+                        demo.output("Got fb token. Setting custom fb authentication.");
+                        demo.connectToRegionMaster("EU");
+                    }
+                });
+            };
+            console.log("DemoInit: Fb Auth init");
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "https://connect.facebook.net/en_US/all.js#xfbml=1&appId=" + DemoFbAppId;
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        }
+        else {
+	        console.log("DemoInit: ConnectOnStart set");
+            ConnectOnStart = true;
+        }
+    </script>
+    <div>
+        <div class="fb-login-button" data-show-faces="true" data-width="400" data-max-rows="1" data-registration-url="" ></div>
+    </div>
+    <div style="float: left">
+        <div>
+            <div id="statetxt">
+                undef
+            </div>
+            <div id="roominfo">
+                undef
+            </div>
+            <select id="gamelist">
+            </select>
+            <button id="joingamebtn">Join Game</button>
+            <button id="joinrandomgamebtn">Join Random Game</button>
+            <button id="newgamebtn">New Game</button>
+            <input type="text" id="newgamename" />
+        </div>
+        <div>
+            <div id="theDialogue"></div>
+            <form class="photon" id="mainfrm">
+                <input type="text" id="input" />
+                <input type="submit" value="Send" />
+            </form>
+            <button id="colorbtn">Change Color</button>
+            <button id="leavebtn">Leave</button>
+        </div>
+    </div>
+</body>
+</html>

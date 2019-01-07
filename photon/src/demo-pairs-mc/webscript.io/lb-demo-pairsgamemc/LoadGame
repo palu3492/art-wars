@@ -1,0 +1,11 @@
+log(json.stringify(request))
+local x = json.parse(request.body)
+local dataStr = storage["game:" .. x["GameId"]]
+if dataStr then 
+	local data = json.parse(dataStr)
+	data.status = 0
+	data.message="LoadGame: OK"
+	return data
+else
+	return {status = 1, message="LoadGame: Game Not Found: " .. tostring(x["GameId"]) }
+end	

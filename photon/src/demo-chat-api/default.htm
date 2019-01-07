@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>TypeScript HTML App</title>
+    <link rel="stylesheet" media="all" href="css/eg.photon.demo.css" />
+    <script type="text/javascript" src="Photon/3rdparty/swfobject.js"></script>
+    <script type="text/javascript" src="Photon/3rdparty/web_socket.js"></script>
+    <!--lib--><script type="text/javascript" src="Photon/Photon-Javascript_SDK.js"></script>
+    <!--info (optional)--><script type="text/javascript" src="cloud-app-info.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript">
+        WEB_SOCKET_SWF_LOCATION = "Photon/3rdparty/WebSocketMain.swf";
+        // Set this to dump debug message from Flash to console.log:
+        WEB_SOCKET_DEBUG = false;
+    </script>
+</head>
+<body>
+    <h1>Chat API Demo</h1>
+    <div>
+        <div id="statetxt">
+            undef
+        </div>
+        User id:
+        <input id="userid" type="text" value="">
+        <button onclick="chatClient.demoConnect()">Connect</button>
+
+        <button onclick="chatClient.disconnect()">Disconnect</button>
+        <button onclick="chatClient.demoSubscribe()">Subscribe</button>
+        <button onclick="chatClient.demoUnsubscribe()">Unsubscribe</button>
+        <div id="log"></div>
+        <div id="setuserstatus"></div>
+        <form onsubmit="chatClient.demoSendMessage(); return false">
+            <input type="text" id="input" />
+            <input type="submit" value="Send" />
+        </form>
+    </div>
+  </form>
+
+</body>
+</html>

@@ -1,0 +1,205 @@
+* release_history.txt
+* Release history for the JavaScript/TypeScript Photon Client Libraries
+(C) 2018 Exit Games GmbH, http://www.photonengine.com
+
+*** Version 3-2-0-0-Beta
+*** Version 3-2-0-1-Beta (08.02.2013 - rev308)
+ADDED: LoadBalancingClient.createRoomFromMy - uses properties (except name) of current room for room creation request
+ADDED: PhotonPeer.StatusCodes.connectClosed - connection closed by server as opposed to StatusCodes.disconnect by client
+
+*** Version 3-2-1-1 (11.04.2013 - rev317)
+ADDED: LoadBalancingClient.joinRandomRoom expectedCustomRoomProperties and expectedMaxPlayers parameters
+BREAKING: LoadBalancingClient.joinRandomRoom matchingType parameter order changed
+ADDED: LoadBalancing.Room setIsVisible, setIsOpen, setMaxPlayers methods for updating standard room properties while joined
+FIXED: LoadBalancingClient.myRoomActors initialized with local client before connection and after disconnect
+CHANGED: LoadBalancingClient.changeState calls moved below client state update in handlers for user could use new states in onStateChange 
+RENAMED: LoadBalancingClient.isConnectedToGame -> isJoinedToRoom
+FIXED: loadBalancingClient.isConnectedToMaster() means masterPeer.isConnected (true all the way while connected to master)
+FIXED: state -> ConnectedToMaster on OperationCode.Authenticate response; state  -> JoinedLobby on OperationCode.JoinLobby response (was ConnectedToMaster)
+BREAKING: previous fix can break code relying on ConnectedToMaster state - replace it with JoinedLobby
+ADDED: LoadBalancingClient.isInLobby - ready to join or create game
+CHANGED: LoadBalancingClient.raiseEvent data parameter is optional
+ADDED: LoadBalancingClient.leaveRoom: after disconnecting from game, reconnects to master if not connected
+CHANGED: LoadBalancingClient.state = JoinedLobby after disconnect from game if still connected to master (via keepMasterConnection = true)
+
+*** Version 3-2-1-2 (01.07.2013 - rev330)
+ADDED: Custom Authentication 
+CHANGED: app settings template replaced with working cloud-app-info.js file with default demo master server = app-eu.exitgamescloud.com:9090
+ADDED: compiled js files, so one can use the project as javascript sdk, without need of typescript compiler 
+ADDED: proxy Photon-Javascript_SDK.d.ts file; demos reference lib sources in development same way as they reference release libs in production
+
+*** Version 3-2-1-3 (25.09.2013 - rev377)
+BREAKING: moved to typescript 0.9 (0.9.1.1) - is not backward compatible 
+BREAKING: LoadBalancingClient.createRoom optional parameters moved to single table parameter 'option'
+ADDED: Room.setEmptyRoomLiveTime - sets 'empty room live time' option for CreateRoom operation 
+ADDED: parameter 'byClient' to Actor.onPropertiesChange and RoomInfo.onPropertiesChange - true if props updated by local client
+ADDED: targetActors option to RaiseEvent operation
+CHANGED: LoadBalancing game EventCode.Join event updates local actor custom props as well as actorId
+ADDED: room properties updated on CreateGame response (in case server sets it's own properties)
+ADDED: demo-pairs and demo-pairs-mc demos
+
+*** Version 3-2-1-4 (22.10.2013 - rev391)
+ADDED: 'lobby stats' feature: LoadbalancingClient.connect() 'lobbyStats' option, LoadbalancingClient.requestLobbyStats(), LoadbalancingClient.onLobbyStats() methods 
+ADDED LoadbalancingClient AppStats handling: LoadbalancingClient.onAppStats() method 
+ADDED: 'typed lobbies' feature lobbyName/lobbyType/sqlLobbyFilter support in connect/create/join LoadbalancingClient methods
+ADDED: LoadbalancingClient.joinRoom() 'createIfNotExists' option 
+CHANGED: LoadBalancingClient.connect() 'keepMasterConnection' parameter moved to single 'options' table parameter (old syntax deprecated)
+BREAKING: LoadBalancingClient.joinRandomRoom() parameters moved to single 'options' table parameter 
+ADDED: LoadBalancingClient.findFriends() / LoadBalancingClient.onFindFriendsResult()
+ADDED: 'rejoin' feature: LoadBalancingClient.joinRoom() 'joinToken' option / Actor.getJoinToken() (last autosaved join token)
+ADDED: CustomAuthenticationType Steam and Facebook constants
+
+*** Version 4-0-0-0 (17.06.2014 - rev415)
+    loadbalancing:
+CHANGED: switched to TypeScript version 1.0.0.0 (looks like fully compatible with previous)
+CHANGED: LoadBalancingClient: servers addresses optionally can be prefixed with protocol ("ws://" added automatically in case if no prefix)
+ADDED: NameServer features: connectToNameServer, getRegions, connectToRegionMaster
+ADDED: LoadBalancingClient.webRpc
+ADDED: LoadBalancingClient.createRoom() suspendedPlayerLiveTime option (PlayerTTL)
+ADDED: Room.suspendedPlayerLiveTime / Room.setSuspendedPlayerLiveTime()
+ADDED: LoadBalancingClient.suspendRoom() - 'willComeBack' disconnect from Game server 
+ADDED: Actor.isSuspended(), LoadBalancingClient.onActorSuspend()
+ADDED: Room.setCustomProperties(), Actor.setCustomProperties()
+ADDED: LoadBalancingClient.onActorLeave 'cleanup' parameter
+ADDED: LoadBalancingClient.onJoinRoom 'createdByMe' parameter 
+BREAKING: local actor name is not used as userId anymore
+ADDED: setUserId/getUserId
+ADDED: 'uniqueUserId' create room option (server rejects joinRoom request if client with specified userId already joined)
+CHANGED: LoadBalancingClient.connectToRegionMaster connects to NameServer automatically if not connected 
+CHANGED: joinRoom accepts and sends room creation options for createIfNotExists support
+CHANGED: LoadBalancingClient.leaveRoom sends 'Leave' operation to Game server instead of disconnecting (disconnected by server after) 
+CHANGED: RpcCallRetData code updated to (breaking) server changes: 205 -> 208
+CHANGED: LoadBalancingClient 'connect' methods don't fail on bad state, return false instead 
+CHANGED: LoadBalancingClient/ChatClient StateToName return undefined instead of "undefined" if state not found
+FIXED: LoadBalancingClient: OperationCode.JoinGame response: player list built from ActorList property, not from PlayerProperties
+FIXED: LoadBalancingClient: changing remote actor properties: client always sent local actor id in operation
+    chat:
+ADDED: Initial Version (Beta 1.0.0.0, 27.04.2014)
+CHANGED: Client addFriends/removeFriends instead of setFriendList
+CHANGED: error code and message removed from onSubscribeResult/onUnsubscribeResult (server sends events on subscribe/unsubscribe requests now)
+ADDED: sendPrivateMessage optional 'encrypt' parameter - sends operation encrypted
+
+*** Version 4-0-0-1 (21.04.2015 - rev448)
+    loadbalancing:
+BREAKING: Room: SetUniqueUserId -> setUniqueUserId
+ADDED: Photon.ConnectionProtocol enum: Ws, Wss
+CHANGED: if address has no recognized prefix then prefix added depending on protocol (was ws:// before)
+CHANGED: LoadBalancing constructor 'serverAddress' parameter turned to 'protocol', addresses set to default (but if type of parameter is string, it still treated as address for compatibility)
+ADDED: setNameServerAddress/getNameServerAddress, setMasterServerAddress/getMasterServerAddress to override defaults, 
+ADDED: custom authentication optional post data
+ADDED: LoadBalancingClient.myRoomActorCount() - returns size of LoadBalancingClient.actorsArray.length (number of players currently in room)
+CHANGED: LoadBalancingClient.currentRoom.playerCount returns number of players currently in room (gets updated from LoadBalancingClient.myRoomActorCount() when number changes)
+ADDED: room setCustomProperty/setCustomProperties 'webForward' parameter
+ADDED: raiseEvent 'webForward' option
+FIXED: demos log render in FireFox (no more unsupported 'innerText')
+    chat:
+CHANGED: Photon.Chat.Constants.ParameterCode.UserId: 7 -> 225 (as server api changed)
+
+*** Version 4-0-0-2 (28.05.2015 - rev450)
+	loadbalancing: turnbased:
+FIXED: typo caused malformed join room operation if joinToken was set (disconnect by master server on rejoin)
+
+*** Version 4-0-0-3 (29.06.2016 - rev475)
+	loadbalancing:
+ADDED: room properties set: expectedProperties parameters 
+ADDED: actor properties set: webForward and expectedProperties parameters 
+FIXED: webRpc available when connected to game server 
+CHANGED: error logged before calling user-defined onError methods
+CHANGED: warning logged before calling user-defined onOperationResponse methods in case of erroneous response
+CHANGED: photon logger prefix formatting: whitespace added after prefix automatically (demo projects updated accordingly, enable whitespace compare to see the diff)
+CHANGED: code updated to be compatible with TypeScript 1.8
+FIXED: PhotonPeer keep alive timer reset when start connection and when connected (required if PhotonPeer used directly in user code)
+FIXED: LoadBalancingClient does not throw an error if server disconnected client on 'leaveRoom' request	
+ADDED: userId and nickname (assigned to player name) retrieval from nameserver and master server Authenticate responses
+CHANGED: onActorJoin called on local actor join event: new properties can be set with this event
+FIXED: PhotonPeer _sessionid is cleared when connection starts (connect failed after disconnect on same socket because of non-nul _sessionid)
+FIXED: LitePeer.isJoined set to false on disconnect
+CHANGED: PhotonPeer.keepAliveTimeoutMs set to 3000
+CHANGED: LobbyType.Default = 0
+
+*** Version 4-0-0-4 (07.07.2016 - rev477)
+	core:
+FIXED: Sec-WebSocket-Protocol header was not set that caused connection failure for some WebSocket realizations
+
+*** Version 4-0-0-5 (08.12.2016 - rev483)
+	loadbalancing:
+FIXED: client did not disconnect from game server after Leave operation
+FIXED: custom and well-known properties retrieval from properties update event
+ADDED: client myRoomMasterActorNr() method returning lowest actor nr in room or masterClientId received from server (if available)
+	scirra:
+ADDED: 'MasterActorNr' expression
+ADDED: usw, sa, cae regions to dropdown menu 
+CHANGED: (BREAKING) existing regions dropdown menu lowercased (reset menu selection in ui after update)
+FIXED: options objects literals keys replaced with strings to avoid replacement during export to HTML5
+
+*** Version 4-0-0-6 (22.03.2017 - rev489)
+	core:
+FIXED: round trip time measurement
+ADDED: PhotonPeer.getLastRtt()
+	loadbalancing:
+ADDED: LoadBalancingClient.lastRtt() 
+ADDED: Plugins room parameter (code 204)
+	scirra:
+ADDED: 'kr' and 'in' in regions list
+FIXED: region EU -> eu in default Photon object properties and demo-test
+FIXED: app stats, lobby stats, friend info objects fields dereferenced via ["..."], otherwise minifying during export breaks them
+FIXED: chat applications minified export
+
+*** Version 4-0-0-9 (18.01.2018 - rev512)
+	loadbalancing:
+CHANGED: server error code and message added to authentication error info
+
+*** Version 4-0-0-10 (22.02.2018 - rev529)
+	core:
+ADDED: Logger instance exception() method throwing an Error or calling global method set via static cLogger.setExceptionHandler
+CHANGED: all "throw new Error" replaced with Logger.exception() calls
+	loadbalancing:
+CHANGED: ParameterCode.Forward -> WebFlags
+CHANGED: webfForward property set via 0x1 flag instead of boolean
+ADDED: webRpc: options.sendAuthCookie parameter, if true, new ParameterCode.WebFlags parameter set to 0x2 (byte)
+	chat:
+ADDED: publishMessage, sendPrivateMessage: options.webForward. parameter, if true, new ParameterCode.WebFlags parameter set to 0x1 (byte)
+	scirra:
+CHANGED: Photon exceptions trigger OnError condition
+ADDED: AlertBlocker plugin preventing browser alerts from showing up
+
+*** Version 4-0-0-11 (18.04.2018 - rev531)
+	loadbalancing:
+FIXED: actor list could be broken after updating from JoinGame response (iterated over object properties instead if array elements)
+	scirra:
+FIXED: preventing Photon global variables from renaming when minifying during export
+FIXED (BREAKING): EventCode expression return type changed from string to number
+
+*** Version 4-1-0-0 (17.08.2018 - rev541)
+	loadbalancing:
+BREAKING: rejoin request uses RejoinOnly (userId based) mode and does not passes actorNr (rejoinToken)
+BREAKING boolean 'rejoin' option used instead 'rejoinToken' string in join options
+BREAKING: uniqueUserId option removed, room always created with CheckUserOnJoin = true
+CHANGED: suspendRoom sends Leave with IsInactive = true (was simple disconnect)
+CHANGED: leaveRoom and suspendRoom: 'options' parameter with single 'sendAuthCookie' option added
+CHANGED: EmptyRoomTtl and PlayerTtl are well known properties: updated on clients when they join, or some client sets them with setEptyRoomLiveTime() or setSuspendedPlayerLiveTime() while joined to a room
+CHANGED: typescript LoadBalancingClient: 'userAuthData' property and setCustomAuthentication() 'authData' parameter type changed to 'any' to allow pass a dictionary
+FIXED: appid and libversion=4.1.0.0 parameters to url, otherwise sever does not return proper error codes for rejoin
+FIXED: wrong 'roomsAdded' parameter value was passed to 'onRoomListUpdate' callback
+	chat:
+ADDED: last message id support (channel getLastId() and ids in subscribe())
+BREAKING: subscribe method: 'messagesFromHistory' parameter replaced with 'options' with 'messagesFromHistory' and 'lastMsgIds' inside (old method signature is still supported)	
+	scirra:
+CHANGED: "Join room" action RejoinActorNr parameter changed to boolean "Rejoin"
+CHANGED: "Set unique userid check" is deprecated
+ADDED: chat last message id support
+
+*** Version 4-1-0-1 (14.09.2018 - rev552)
+	common:
+ADDED: Common.Logger setPrefix(), getPrefix()
+	loadbalancing:
+ADDED: connectToNameServer: 'options' parameter with 'region', 'lobbyName', 'lobbyType', 'lobbyStats' and 'keepMasterConnection' parameters added ('connectToNameServer' is the same as 'connectToRegionMaster' but with more features)
+CHANGED: logging from peers marked as NameServer, Master or Game according to peer type
+	scirra:
+ADDED: C3 runtime support
+ADDED: photon plugin SetAppId, SetAppVersion and Reset (recreates loadbalancing client) actions
+ADDED: photon chat plugin SetAppId, SetAppVersion and Reset (recreates chat client) actions
+ADDED: Missing photon chat user status presets strings in UserStatusString expression
+ADDED: photon plugin "On disconnect" condition
+
+***

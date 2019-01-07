@@ -1,0 +1,70 @@
+body {
+    background-color: #444;
+    color: #fff;
+    font: normal 11px/130% Arial, Helvetica, sans-serif;
+    padding: 2em;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+}
+
+form.photon {
+    float: left;
+}
+     form.photon > fieldset {
+        border: 1px solid #ccc;
+        padding: .5em;
+     }
+     form.photon input {
+        background-color: #fff;
+        border: none;
+        -moz-border-radius: 4px; /* Mozilla / Firefox */
+        -webkit-border-radius: 4px; /* Safari / Chrome */
+        border-radius: 4px; /* CSS3 */
+        margin-right: 1em;
+        padding: .5ex;
+     }
+     form.photon fieldset#params {
+        width: 39.5em;
+     }
+     form.photon fieldset#info {
+        width: 60em;
+     }
+     form.photon fieldset.buttons {
+        border: none;
+        text-align: right;
+        margin-top: 1em;
+     }
+
+        form.photon > fieldset > label {
+            display: inline-block;
+            width: 9em;
+        }
+        form.photon > fieldset > input {
+            margin-bottom: .5em;
+        }
+        form.photon > fieldset > input:last-child {
+            margin-bottom: 0;
+        }
+
+.canvasHolder {
+    float: left;
+    margin-bottom: 2em;
+    margin-right: 2em;
+}
+
+#theDialogue {
+    background-color: #000;
+    border: 2px solid #fff;
+    -moz-border-radius: 4px; /* Mozilla / Firefox */
+    -webkit-border-radius: 4px; /* Safari / Chrome */
+    border-radius: 4px; /* CSS3 */
+    color: #eee;
+    height: 13em;
+    margin-bottom: 1em;
+    overflow: scroll;
+    padding: .5em;
+    width: 42em;
+}

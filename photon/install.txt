@@ -1,0 +1,40 @@
+Photon Javascript SDK Installation Instructions
+(C) Exit Games GmbH 2015
+
+
+- Move the Photon Javascript SDK to a location of your choice,
+    e.g. C:\Photon\sample.
+    
+- Optionally configure the Flash Plugin
+
+    This step is only needed if you open the samples via file browser
+    (URL file://...) and only for browsers not natively supporting
+    websockets ... and/or if you explicitly test the Fash fallback.
+    
+    Repeat this with the browser of your choice.
+    
+    1. <http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html>
+    2. Edit Locations ...
+    3. Add Location ...
+    4. Browse for folder 'sample', e.g. C:\Photon\LiteWebSockets\sample
+    5. Select it
+    6. Confirm and make sure the path shows up correctly!
+    
+- Set up you application info
+    Open cloud-app-info.js file found in demo root folder with text editor and set your application 
+    info. The application id can be created in correspondent dashboard section:
+    - demo-loadbalancing and demo-particle require Realtime application id 
+	  (https://www.photonengine.com/en/Realtime/Dashboard)
+    - demo-pairs-mc requires Turnbased application id 
+	  (https://www.photonengine.com/en/Turnbased/Dashboard)
+    - demo-chat-api requires Chat application id (https://www.photonengine.com/en/Chat/Dashboard)
+
+- Optionally set Wss to true in cloud-app-info.js to enable secure webscockets.
+
+- Optionally for demo-particle and demo-pairs-mc samples. Set FbAppId to your Facebook App id 
+  in cloud-app-info.js for Facebook login. Place your HTML5 / JavaScript client code on one of 
+  App Domains specified in your Facebook App settings. This required for proper Facebook Login 
+  button work.
+    
+- Open default.html in browser.
+
