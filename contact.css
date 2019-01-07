@@ -1,0 +1,21 @@
+p{
+    font-size: 17px;
+}
+hr{
+    background-color: #dad8de;
+}
+#choose-name{
+    width: 480px;
+}
+#titlec{
+    margin:7px;
+    color: grey;
+}
+#namec{
+    font-size: 25px;
+}
+.infoc{
+    text-align: left;
+    margin: 5px;
+    margin-left: 10px;
+}
