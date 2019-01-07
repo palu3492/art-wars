@@ -96,7 +96,7 @@ function handleMouseUp(event) {
 function changeWidth(size){
     width = size;
     if(yourTurn) {
-        var cursor = "url(cursor" + size.toString() + ".png) " + (size/2).toString() + " " + (size/2).toString() + ", auto";
+        var cursor = "url(assets/cursors/cursor" + size.toString() + ".png) " + (size/2).toString() + " " + (size/2).toString() + ", auto";
         document.getElementById('draw').style.cursor = cursor;
         photon.raiseEvent(3, size);
     }

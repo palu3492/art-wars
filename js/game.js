@@ -280,7 +280,7 @@ function turnStart(nr){
         document.getElementById('chat-input').disabled = true;
         document.getElementById('drawing-tools').style.display = 'block';
         document.getElementById('drawing-box').classList.add("drawing-box-yourturn");
-        document.getElementById('draw').style.cursor = "url(cursor15.png) 7.5 7.5, auto";
+        document.getElementById('draw').style.cursor = "url(assets/cursors/cursor15.png) 7.5 7.5, auto";
         if(!practice) {
             startTimer();
             photon.raiseEvent(8, photon.myActor().name); //canvas drawer note

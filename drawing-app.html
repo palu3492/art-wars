@@ -3,25 +3,25 @@
     <head>
         <meta charset="UTF-8">
         <title>Art Wars</title>
-        <script type="text/javascript" src="drawing.js"></script>
-        <script type="text/javascript" src="Photon_SDK.js"></script>
-        <script type="text/javascript" src="loadBalancing.js"></script>
-        <script type="text/javascript" src="photonSettings.js"></script>
-        <script type="text/javascript" src="eventControl.js"></script>
-        <script type="text/javascript" src="easeljs.js"></script>
-        <script type="text/javascript" src="soundjs.js"></script>
-        <script type="text/javascript" src="chat.js"></script>
-        <script type="text/javascript" src="other.js"></script>
-        <script type="text/javascript" src="game.js"></script>
+        <script type="text/javascript" src="js/drawing.js"></script>
+        <script type="text/javascript" src="js/Photon_SDK.js"></script>
+        <script type="text/javascript" src="js/loadBalancing.js"></script>
+        <script type="text/javascript" src="js/photonSettings.js"></script>
+        <script type="text/javascript" src="js/eventControl.js"></script>
+        <script type="text/javascript" src="js/easeljs.js"></script>
+        <script type="text/javascript" src="js/soundjs.js"></script>
+        <script type="text/javascript" src="js/chat.js"></script>
+        <script type="text/javascript" src="js/other.js"></script>
+        <script type="text/javascript" src="js/game.js"></script>
         <!--<script type="text/javascript" src="setup.js"></script>-->
-        <script type="text/javascript" src="practice.js"></script>
+        <script type="text/javascript" src="js/practice.js"></script>
         <link rel="stylesheet" href="style.css">
     </head>
 
     <body>
         <div id="nav-bar">
             <input type="button" id="back" class="btn" value="Back"/>
-            <img id="logo" src="logo2.png" height="60%"/>
+            <img id="logo" src="assets/logo2.png" height="60%"/>
         </div>
         <div id="choose-name">
             <p class="note">Pick a name and avatar to play online</p>
@@ -90,9 +90,9 @@
                     <div id="tool-box" class="box">
                         <div class="tool-title"><p>Tools</p></div>
                         <div class="tool" onclick="fillCanvas()"></div>
-                        <div class="tool" style="background:url(trash.png);background-size:25px;background-repeat:no-repeat;" onclick="clearCanvas()"></div>
-                        <div class="tool" style="background: url(erase.png);background-size:27px;background-repeat:no-repeat;" onclick="changeColor('white');"></div>
-                        <div class="tool" style="background: url(download.png);background-size: 27px;background-repeat:no-repeat;" onclick="saveImage();"></div>
+                        <div class="tool" style="background:url(assets/buttonImages/trash.png);background-size:25px;background-repeat:no-repeat;" onclick="clearCanvas()"></div>
+                        <div class="tool" style="background: url(assets/buttonImages/erase.png);background-size:27px;background-repeat:no-repeat;" onclick="changeColor('white');"></div>
+                        <div class="tool" style="background: url(assets/buttonImages/download.png);background-size: 27px;background-repeat:no-repeat;" onclick="saveImage();"></div>
                     </div>
                 </div>
                 <div id="drawing-box">

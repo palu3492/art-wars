@@ -64,7 +64,7 @@ function changeAvatarImages(){
     for(var i=0; i<avatars.length; i++){
         var av = avatars[i];
         if(av.tagName === 'DIV'){
-            var url = "url('avatars/final/" + urls[w++] + "')";
+            var url = "url('assets/avatars/final/" + urls[w++] + "')";
             av.style.backgroundImage = url;
             av.addEventListener('click', function() { changeAvatar(this) }, false);
         }
