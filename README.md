@@ -1,4 +1,4 @@
-# Art-Wars
+# ArtWars
 Online Multiplayer Pictionary Game
 
 Play online at www.ArtWars.tk
