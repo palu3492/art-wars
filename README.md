@@ -1,5 +1,5 @@
 # ArtWars
-Online Multiplayer Pictionary Game
+Online multiplayer drawing and guessing game. Play with anyone worldwide.
 
 Play online at www.ArtWars.tk
 
