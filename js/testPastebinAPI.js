@@ -1,3 +1,11 @@
+serialize = function(obj) {
+    var str = [];
+    for (var p in obj)
+        if (obj.hasOwnProperty(p)) {
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        }
+    return str.join("&");
+}
 
 function testPastebin() {
     var xhr = new XMLHttpRequest();
@@ -13,7 +21,7 @@ function testPastebin() {
         api_paste_private: '1',
         api_user_key: '83f22f57b6e93b11a6964506361da438', // Login
     };
-    xhr.send(JSON.stringify(requestBody));
+    xhr.send(serialize(requestBody));
     console.log(xhr);
     xhr.onload = function() {
         if (xhr.status != 200) { // analyze HTTP status of the response
