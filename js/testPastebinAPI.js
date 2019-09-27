@@ -4,7 +4,7 @@ function testPastebin() {
     let pastebinApiUrl = 'https://cors-anywhere.herokuapp.com/https://pastebin.com/api/api_post.php';
     xhr.open("POST", pastebinApiUrl, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.setRequestHeader('origin', 'https://palu3492.github.io/Art-Wars/');
+    xhr.setRequestHeader('x-requested-with', 'https://palu3492.github.io/Art-Wars/');
     let requestBody = {
         api_dev_key: '26338589f548f136db10773ec3eecbed',
         api_option: 'paste',
