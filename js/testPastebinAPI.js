@@ -4,6 +4,7 @@ function testPastebin() {
     let pastebinApiUrl = 'https://pastebin.com/api/api_post.php';
     xhr.open("POST", pastebinApiUrl, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
     let requestBody = {
         api_dev_key: '26338589f548f136db10773ec3eecbed',
         api_option: 'paste',
