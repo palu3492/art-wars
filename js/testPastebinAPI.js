@@ -1,13 +1,10 @@
 
 function testPastebin() {
     var xhr = new XMLHttpRequest();
-    let pastebinApiUrl = 'https://pastebin.com/api/api_post.php';
+    let pastebinApiUrl = 'https://cors-anywhere.herokuapp.com/https://pastebin.com/api/api_post.php';
     xhr.open("POST", pastebinApiUrl, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.setRequestHeader('Access-Control-Allow-Origin', 'https://pastebin.com');
-    xhr.setRequestHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, POST, DELETE, OPTIONS');
-    xhr.setRequestHeader('Access-Control-Allow-Headers', 'application/json');
-    xhr.setRequestHeader('Access-Control-Max-Age', 86400);
+    xhr.setRequestHeader('origin', 'https://palu3492.github.io/Art-Wars/');
     let requestBody = {
         api_dev_key: '26338589f548f136db10773ec3eecbed',
         api_option: 'paste',
