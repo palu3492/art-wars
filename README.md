@@ -1,7 +1,7 @@
 # Art Wars
 An online multiplayer drawing and guessing game.
 
-Play now! Hosted on GitHub https://palu3492.github.io/Art-Wars/
+Play now! Hosted on GitHub https://palu3492.github.io/art-wars/
 
 Desktop version (Electron) https://github.com/palu3492/Drawing-App-Electron
 
