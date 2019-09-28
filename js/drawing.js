@@ -14,7 +14,7 @@ function setupCanvas(){
     stage.autoClear = false;
     stage.enableDOMEvents(true);
 
-    createjs.Touch.enable(stage);
+    createjs.Touch.enable(stage, true, true);
     // createjs.Ticker.framerate = 24;
 
     drawingCanvas = new createjs.Shape();
