@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function(){
     });
     createAvatars();
     changeAvatarImages();
+    randomAvatar();
 
     var name = getCookie('name');
     if(name){
@@ -30,15 +31,15 @@ document.addEventListener("DOMContentLoaded", function(){
 function changeAvatar(el){
     var av = document.getElementById("avatar-selected");
     av.style.backgroundImage = el.style.backgroundImage;
-    hideAvatar();
+    hideAvatarBox();
 }
 
-function changeAvatarBox(){
+function showAvatarBox(){
     var avatarSelect = document.getElementById("avatar-select");
     avatarSelect.style.display = 'block';
 }
 
-function hideAvatar(){
+function hideAvatarBox(){
     var avatarSelect = document.getElementById("avatar-select");
     avatarSelect.style.display = 'none';
 }
@@ -76,6 +77,12 @@ function createElementFromHTML(htmlString) {
     div.innerHTML = htmlString.trim();
     //  div.childNodes
     return div.firstChild;
+}
+
+function randomAvatar(){
+    let avatars = document.getElementById("avatar-select").childNodes;
+    let index = Math.floor(Math.random() * (avatars.length-1));
+    changeAvatar(avatars[index]);
 }
 
 function getCookie(cname) {
