@@ -1,6 +1,10 @@
 get rid of easelJS and soundJS
 add more sounds
-touch support
+touch support <-- IN PROGRESS
 cursor resize with canvas
 notify people when if no one guessed
 notify every one what the word was when round is over
+write (you) next to player
+save drawings to pastebin <-- DONE
+change github name to art-wars
+change logo/name to Art Wars

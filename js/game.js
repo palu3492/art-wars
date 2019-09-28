@@ -6,11 +6,11 @@ var wordHint = [];
 var practice = false;
 
 function actorJoined(actor){
-    if (actor.actorNr === photon.myActor().actorNr) {
-        soundInit();
-    } else{
-        playSound('sounds/zap1.mp3');
-    }
+    // if (actor.actorNr === photon.myActor().actorNr) {
+    //     soundInit();
+    // } else{
+    //     playSound('sounds/zap1.mp3');
+    // }
     changeActorList();
     notifyChat(actor.name + " joined");
     // if more than 1 players are in room and the game is not active

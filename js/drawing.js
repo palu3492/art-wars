@@ -6,7 +6,7 @@ var width = 15;
 var yourTurn = false;
 var stage;
 var drawingCanvas;
-var cont;
+// var cont;
 
 function setupCanvas(){
     canvas = document.getElementById("draw");
@@ -14,7 +14,7 @@ function setupCanvas(){
     stage.autoClear = false;
     stage.enableDOMEvents(true);
 
-    // createjs.Touch.enable(stage);
+    createjs.Touch.enable(stage);
     // createjs.Ticker.framerate = 24;
 
     drawingCanvas = new createjs.Shape();
@@ -23,9 +23,9 @@ function setupCanvas(){
     stage.addEventListener("stagemouseup", handleMouseUp);
 
     // stage.addChild(drawingCanvas);
-    cont = new createjs.Container();
-    cont.addChild(drawingCanvas);
-    stage.addChild(cont);
+    //cont = new createjs.Container();
+    stage.addChild(drawingCanvas);
+    //stage.addChild(cont);
     stage.update();
 }
 

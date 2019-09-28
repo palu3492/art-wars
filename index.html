@@ -12,12 +12,12 @@
         <script type="text/javascript" src="js/photonSettings.js"></script>
         <script type="text/javascript" src="js/eventControl.js"></script>
         <script type="text/javascript" src="js/easeljs.js"></script>
-        <script type="text/javascript" src="js/soundjs.js"></script>
+        <!--<script type="text/javascript" src="js/soundjs.js"></script>-->
         <script type="text/javascript" src="js/chat.js"></script>
         <script type="text/javascript" src="js/other.js"></script>
         <script type="text/javascript" src="js/game.js"></script>
         <script type="text/javascript" src="js/practice.js"></script>
-        <script type="text/javascript" src="js/testPastebinAPI.js"></script>
+        <script type="text/javascript" src="js/pastebinAPI.js"></script>
         <link rel="stylesheet" href="style.css">
     </head>
 
@@ -45,7 +45,7 @@
         <div id="main">
             <div id="left">
                 <div class="top-bar">
-                    <p class="title-text">Players Online</p>
+                    <p class="title-text">Players</p>
                     <p class="title-text" id="player-count">0/10</p>
                 </div>
                 <div id="actors">
@@ -95,7 +95,7 @@
                         <div class="tool" onclick="fillCanvas()"></div>
                         <div class="tool" style="background:url(assets/buttonImages/trash.png);background-size:25px;background-repeat:no-repeat;" onclick="clearCanvas()"></div>
                         <div class="tool" style="background: url(assets/buttonImages/erase.png);background-size:27px;background-repeat:no-repeat;" onclick="changeColor('white');"></div>
-                        <div class="tool" style="background: url(assets/buttonImages/download.png);background-size: 27px;background-repeat:no-repeat;" onclick="saveImage();"></div>
+                        <div class="tool" style="background: url(assets/buttonImages/download.png);background-size: 27px;background-repeat:no-repeat;" onclick="saveImage();saveImageToPastebin();"></div>
                     </div>
                 </div>
                 <div id="drawing-box">
