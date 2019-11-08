@@ -296,6 +296,7 @@ function turnStart(nr){
 }
 
 function newDrawer(){
+    saveImageToPastebin(); // save drawing on canvas to Pastebin before clearing canvas
     turnOver();
     resetActorGuessed();
     var order = photon.myRoom().getCustomProperty('drawOrder');
