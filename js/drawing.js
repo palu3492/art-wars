@@ -106,6 +106,7 @@ function changeColor(newColor){
     color = newColor;
     if(yourTurn) {
         document.getElementById('color-circle').style.background = color;
+        document.getElementById('fill').style.background = color;
         photon.raiseEvent(4, newColor);
     }
 }
@@ -133,5 +134,6 @@ function newDrawing(){
     clearCanvas();
     color = "#ff0000";
     document.getElementById('color-circle').style.background = color;
+    document.getElementById('fill').style.background = color;
     width = 15;
 }

@@ -92,10 +92,26 @@
                     </div>
                     <div id="tool-box" class="box">
                         <div class="tool-title"><p>Tools</p></div>
-                        <div class="tool" onclick="fillCanvas()"></div>
-                        <div class="tool" style="background:url(assets/buttonImages/trash.png);background-size:25px;background-repeat:no-repeat;" onclick="clearCanvas()"></div>
-                        <div class="tool" style="background: url(assets/buttonImages/erase.png);background-size:27px;background-repeat:no-repeat;" onclick="changeColor('white');"></div>
-                        <div class="tool" style="background: url(assets/buttonImages/download.png);background-size: 27px;background-repeat:no-repeat;" onclick="saveImage();saveImageToPastebin();"></div>
+                        <div class="tool" onclick="changeColor('white');">
+                            <div style="background: url(assets/buttonImages/erase.png);background-size:27px;background-repeat:no-repeat;">
+                                <p>Eraser</p>
+                            </div>
+                        </div>
+                        <div id="fill" class="tool" onclick="fillCanvas()">
+                            <div>
+                                <p>Fill Canvas</p>
+                            </div>
+                        </div>
+                        <div class="tool" onclick="clearCanvas()">
+                            <div style="background:url(assets/buttonImages/trash.png);background-size:25px;background-repeat:no-repeat;">
+                                <p>Clear Canvas</p>
+                            </div>
+                        </div>
+                        <div class="tool" onclick="saveImage();saveImageToPastebin();">
+                            <div style="background: url(assets/buttonImages/download.png);background-size: 27px;background-repeat:no-repeat;">
+                                <p>Download Drawing</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div id="drawing-box">
